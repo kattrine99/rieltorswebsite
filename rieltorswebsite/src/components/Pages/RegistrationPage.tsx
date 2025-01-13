@@ -9,7 +9,7 @@ export const RegistrationPage = () => {
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
                 <input type="password" placeholder="Cofirm password" />
-                <button type="submit">Войти</button>
+                <button type="submit">Зарегистрироваться</button>
             </form>
         </div>
     )
