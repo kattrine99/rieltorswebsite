@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { FavouritePage, LoginPage, MainPage, ProfilePage, RegistrationPage } from "./components/index";
+import { FavouritePage, LoginPage, MainPage, ProfilePage, RegistrationPage } from "./Pages/index";
 import App from './App';
+import { Provider } from 'react-redux';
+import { store } from './Store/Store';
 
 const routerConfig = createBrowserRouter([
   {
@@ -32,6 +34,8 @@ const routerConfig = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={routerConfig}></RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={routerConfig} />
+    </Provider>
   </React.StrictMode>,
 )

@@ -1,5 +1,3 @@
-export { FavouritePage } from "./Pages/FavouritePage"
-export { LoginPage } from "./Pages/LoginPage"
-export { MainPage } from "./Pages/MainPage"
-export { ProfilePage } from "./Pages/ProfilePage"
-export { RegistrationPage } from "./Pages/RegistrationPage"
+export {Button} from "./UI/Button/Button"
+export {Input} from "./UI/Input/Input"
+export {Heading} from "./Typography/Heading/Heading"
