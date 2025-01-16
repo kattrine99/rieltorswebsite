@@ -1,0 +1,32 @@
+html, body {
+    margin: 0;
+}
+.header{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #496aee;
+}
+nav{
+    display: flex;
+    gap: 20px;   
+}
+.favorites {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #ffffff;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .favorites:hover {
+    color: #e63946; 
+    transform: scale(1.1); 
+  }
+  .favorites:active {
+    color: #e63946;; 
+    transform: scale(1.5); 
+  }
