@@ -1,0 +1,77 @@
+.registration {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Comfortaa', sans-serif;
+  
+    span {
+      font-size: 14px;
+      color: #666;
+      a {
+        color: #3366cc;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: #285bb5;
+        }
+      }
+    }
+  
+    p {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+    }
+  
+    .icons-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+  
+      .reg__link {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+  
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+  
+        &.google-link {
+          background-color: #fff;
+          border: 1px solid #4285f4;
+        }
+  
+        &.google-plus-link {
+          background-color: #000;
+          border: 1px solid #333;
+        }
+  
+        &.yandex-link {
+          background-color: #fff100;
+          border: 1px solid #ffc107;
+        }
+  
+        &.mail-ru-link {
+          background-color: #f53b3b;
+          border: 1px solid #f05d5d;
+        }
+      }
+    }
+  }
+  

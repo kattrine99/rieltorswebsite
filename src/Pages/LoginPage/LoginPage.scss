@@ -1,0 +1,102 @@
+html, body {
+    margin: 0; 
+    padding: 0; 
+    height: 100%; 
+    font-family: 'Comfortaa', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: linear-gradient(120deg,#abc6e8, #71a9ed);
+    background-repeat: no-repeat;
+}
+
+.loginPage {
+    box-shadow: 0 0px 50px 0px #85b8f7;
+    border-radius: 20px;
+    background: #fff;
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    gap:30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.loginPage form{
+    width: 100%;
+}
+
+.loginPage h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #3366cc;
+}
+
+.loginPage input {
+    width: calc(100% - 40px);
+    max-width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #cad7ed;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.loginPage input:focus {
+    border-color: #3366cc;
+    box-shadow: 0 0 5px rgba(51, 102, 204, 0.4);
+}
+
+.loginPage button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #3366cc, #6699ff);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.loginPage button:hover {
+    background: linear-gradient(45deg, #285bb5, #5578e3);
+}
+
+.loginPage .register-link {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.loginPage .register-link a {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+.loginPage .register-link a:hover {
+    text-decoration: underline;
+}
+
+.social-login {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.social-login img {
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.social-login img:hover {
+    transform: scale(1.1);
+}
