@@ -1,12 +1,13 @@
 import { Button } from "../../components"; // избавиться от точек
 import { Input } from "../../components";
 import "./RegistrationPage.scss"
-// import { AuthWith } from "../components";
 import { Heading } from "../../components";
 import * as yup from "yup"
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../components/UI/Modal/Modal";
+import { useState } from "react";
 interface IRegisterForm {
     userfirstname: string
     userlastname: string
@@ -38,10 +39,15 @@ export const RegistrationPage = () => {
     useremail: "",
     usertel: "",
     userpassword: "", }, })
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const onSubmit: SubmitHandler<IRegisterForm> = () => {
-    navigate("/login")
-}
+    const handleCloseModal = () => {
+      setIsModalOpen(false); 
+      navigate("/login"); 
+    };
+    const onSubmit: SubmitHandler<IRegisterForm> = () => {
+      setIsModalOpen(true); 
+    };
   return (
     <div className="RegisterPage">
       <Heading text="Авторизация" level={1} className={""} />
@@ -88,9 +94,13 @@ export const RegistrationPage = () => {
                       </>
         )}/>
 
-        <Button text="Зарегистрироваться" type="submit" />
+        <Button className= "" text="Зарегистрироваться" type="submit" />
       </form>
-      {/* <AuthWith /> */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        message="Вы успешно зарегистрировались!"
+      />
     </div>
   );
 };

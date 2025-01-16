@@ -55,7 +55,7 @@ export const LoginPage = () => {
           />
 
         )} />
-                <Button text="Войти" type="submit"/>
+                <Button text="Войти" type="submit" className={""}/>
                 </form>
             <AuthWith />
         </div>
