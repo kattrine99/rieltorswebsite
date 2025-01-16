@@ -8,6 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/UI/Modal/Modal";
 import { useState } from "react";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+
 interface IRegisterForm {
     userfirstname: string
     userlastname: string
@@ -40,6 +42,7 @@ export const RegistrationPage = () => {
     usertel: "",
     userpassword: "", }, })
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const handleCloseModal = () => {
       setIsModalOpen(false); 
@@ -47,6 +50,10 @@ export const RegistrationPage = () => {
     };
     const onSubmit: SubmitHandler<IRegisterForm> = () => {
       setIsModalOpen(true); 
+    };
+    const togglePasswordVisibility = () => {
+      setIsPasswordVisible(prevState => !prevState);
+
     };
   return (
     <div className="RegisterPage">
@@ -75,23 +82,27 @@ export const RegistrationPage = () => {
           />
         )} />
         <Controller name="userpassword" control={control} render={({field}) => (
-          <><Input 
+          <div className="pass"><Input 
           isError={errors.userpassword ? true : false}
           errorMessage={errors.userpassword?.message}
+          type={isPasswordVisible ? 'text' : 'password'}
           placeholder="Пароль"
           {...field}
-        />
-            </>
+        /><span onClick={togglePasswordVisibility} className="eye-icon">
+                                {isPasswordVisible ? <FaRegEyeSlash /> : <FaRegEye />}
+                              </span>
+          </div>
         )} />
         <Controller name="repeatpassword" control={control} render={({ field }) => (
-            <>
+            <div className="pass">
             <Input
                 isError={errors.repeatpassword ? true : false}
                 errorMessage={errors.repeatpassword?.message}
+                type={isPasswordVisible ? 'text' : 'password'}
                 placeholder="Повторите пароль"
                 {...field}
-              />
-                      </>
+              /><span onClick={togglePasswordVisibility} className="eye-icon">
+              </span></div>
         )}/>
 
         <Button className= "" text="Зарегистрироваться" type="submit" />

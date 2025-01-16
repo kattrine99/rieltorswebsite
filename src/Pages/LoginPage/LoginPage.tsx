@@ -7,9 +7,9 @@ import * as yup from "yup"
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLoginUserMutation } from "../../Store/api/auth.api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 interface ILoginForm {
     useremail: string
     userpassword: string
@@ -22,8 +22,8 @@ interface ILoginForm {
 export const LoginPage = () => {
     const { control, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(loginFormschema), defaultValues: { useremail: "", userpassword: "" }, })
     const navigate = useNavigate();
-    
     const [loginUser, {data: userData, isError, isLoading, isSuccess, error}] = useLoginUserMutation()
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     useEffect(()=>{
         if(userData?.user_id){
@@ -37,7 +37,9 @@ export const LoginPage = () => {
         console.log(data)
         loginUser({email: data.useremail , password: data.userpassword})
     }
-
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(prevState => !prevState);
+      };
 
     return (
         <div className="loginPage">
@@ -50,11 +52,13 @@ export const LoginPage = () => {
 
         )} />
         <Controller name="userpassword" control={control} render={({field}) => (
-          <Input isError={errors.userpassword ? true : false} errorMessage={errors.userpassword?.message} type="password" placeholder="Пароль"
-            {...field}
-          />
-
+          <div className="pass"><Input isError={errors.userpassword ? true : false} errorMessage={errors.userpassword?.message} type={isPasswordVisible ? 'text' : 'password'} placeholder="Пароль"
+                        {...field} /> <span onClick={togglePasswordVisibility} className="eye-icon">
+                        {isPasswordVisible ? <FaRegEyeSlash /> : <FaRegEye />}
+                      </span></div>
         )} />
+        
+
                 <Button text="Войти" type="submit" className={""}/>
                 </form>
             <AuthWith />

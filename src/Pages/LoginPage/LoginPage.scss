@@ -100,3 +100,26 @@ html, body {
 .social-login img:hover {
     transform: scale(1.1);
 }
+.pass {
+    position: relative;
+  }
+  
+  .pass .input-container {
+    position: relative;
+    width: 100%; 
+  }
+  
+  input {
+    padding-right: 30px; 
+    width: 100%; 
+  }
+  
+  .eye-icon {
+    position: absolute;
+    right: 20px; 
+    top: 50%;
+    transform: translateY(-50%); 
+    font-size: 18px; 
+    color: #285bb5;
+  }
+  
