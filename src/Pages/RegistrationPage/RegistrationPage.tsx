@@ -14,9 +14,9 @@ interface IRegisterForm {
     userfirstname: string
     userlastname: string
     useremail: string
+    usercity: string
     usertel?: string
     userpassword: string
-    repeatpassword: string
 }
 
 const registerFormschema = yup.object({
@@ -27,11 +27,7 @@ const registerFormschema = yup.object({
         /^\+998\d{2}\d{3}\d{2}\d{2}$/,
         "Телефон должен быть в формате +998XXXXXXXXX").max(13,"Телефон должен содержать максимум 13 символов" ).required("Обязательное поле"),
     userpassword: yup.string().required("Обязательное поле").min(8, "Минимум 8 символов"),
-    repeatpassword: yup
-    .string()
-    .required("Обязательное поле")
-    .oneOf([yup.ref("userpassword")], "Пароли должны совпадать")
-    .min(8, "Минимум 8 символов"),
+    usercity: yup.string().required("Обязательное поле"),
 })
 
 export const RegistrationPage = () => {
@@ -40,6 +36,7 @@ export const RegistrationPage = () => {
     userlastname: "",
     useremail: "",
     usertel: "",
+    usercity:"",
     userpassword: "", }, })
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -87,23 +84,10 @@ export const RegistrationPage = () => {
           errorMessage={errors.userpassword?.message}
           type={isPasswordVisible ? 'text' : 'password'}
           placeholder="Пароль"
-          {...field}
-        /><span onClick={togglePasswordVisibility} className="eye-icon">
-                                {isPasswordVisible ? <FaRegEyeSlash /> : <FaRegEye />}
-                              </span>
+          {...field}/>
+          <span onClick={togglePasswordVisibility} className="eye-icon">{isPasswordVisible ? <FaRegEyeSlash /> : <FaRegEye />}</span>
           </div>
         )} />
-        <Controller name="repeatpassword" control={control} render={({ field }) => (
-            <div className="pass">
-            <Input
-                isError={errors.repeatpassword ? true : false}
-                errorMessage={errors.repeatpassword?.message}
-                type={isPasswordVisible ? 'text' : 'password'}
-                placeholder="Повторите пароль"
-                {...field}
-              /><span onClick={togglePasswordVisibility} className="eye-icon">
-              </span></div>
-        )}/>
 
         <Button className= "" text="Зарегистрироваться" type="submit" />
       </form>

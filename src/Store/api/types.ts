@@ -1,5 +1,5 @@
 export interface GetUserByIdResponse{
-    "status": string;
+    "status": number;
     "message": {
         "mail":string,
         "phone_number" : string,
@@ -13,7 +13,7 @@ export interface LoginUserPayload {
     password: string;
 }
 export interface LoginUserResponse {
-    status: string;
+    status: number;
     user_id: number;
     message: string;
 

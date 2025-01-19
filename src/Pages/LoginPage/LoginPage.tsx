@@ -10,6 +10,7 @@ import { useLoginUserMutation } from "../../Store/api/auth.api";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import Modal from "../../components/UI/Modal/Modal";
 interface ILoginForm {
     useremail: string
     userpassword: string
@@ -20,16 +21,25 @@ interface ILoginForm {
   })
 
 export const LoginPage = () => {
-    const { control, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(loginFormschema), defaultValues: { useremail: "", userpassword: "" }, })
+    const { control, handleSubmit, formState: { errors }, reset} = useForm({ resolver: yupResolver(loginFormschema), defaultValues: { useremail: "", userpassword: "" }, })
     const navigate = useNavigate();
     const [loginUser, {data: userData, isError, isLoading, isSuccess, error}] = useLoginUserMutation()
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false); 
+  const [modalMessage, setModalMessage] = useState("");
 
-    useEffect(()=>{
-        if(userData?.user_id){
-            navigate("/main")
-        }
-    }, [userData, navigate])
+  useEffect(() => {
+    console.log("isModalVisible:", isModalVisible); // Отладка
+    if (userData?.status === 0) {
+      setModalMessage("Неверный логин или пароль. Попробуйте снова.");
+      setIsModalVisible(true);
+    } else if (userData?.status === 1) {
+      setModalMessage("Вы успешно вошли в систему!");
+      setIsModalVisible(true);
+      setTimeout(() => navigate("/main"), 2000); // Перенаправление через 2 секунды
+    }
+  }, [userData, isError, navigate, isModalVisible]);
+  
 
     console.log(userData, isError, isLoading, isSuccess, error)
 
@@ -40,6 +50,12 @@ export const LoginPage = () => {
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(prevState => !prevState);
       };
+
+      const closeModal = (): void => {
+        setIsModalVisible(false);
+        reset();
+      };
+      console.log("isError", isError)
 
     return (
         <div className="loginPage">
@@ -62,6 +78,11 @@ export const LoginPage = () => {
                 <Button text="Войти" type="submit" className={""}/>
                 </form>
             <AuthWith />
+            <Modal
+              isOpen={isModalVisible}
+              onClose={closeModal}
+              message={modalMessage}
+              type={isError ? "error" : "success"}/>
         </div>
     )
 }

@@ -2,16 +2,16 @@ import { useNavigate } from "react-router-dom";
 import "./Header.scss"
 import { CiHeart } from "react-icons/ci";
 export const Header = ()=>{
-    const navigate = useNavigate(); // Хук для навигации
+    const navigate = useNavigate(); 
 
   const goToFavorites = () => {
-    navigate("/favorite"); // Переход на страницу избранного
+    navigate("/favorite"); 
   };
   const goToLogIn = () => {
-    navigate("/login"); // Переход на страницу избранного
+    navigate("/login"); 
   };
   const goToSignUp = () => {
-    navigate("/register"); // Переход на страницу избранного
+    navigate("/register"); 
   };
     return (
         <header className="header">
