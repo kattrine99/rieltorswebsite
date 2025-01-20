@@ -1,12 +1,13 @@
 interface ButtonPage {
-    text: string
     type ?: "button" | "submit" | "reset"
     className: string
+    onClick?: () => void; 
+    children?: React.ReactNode;
   }
   
-  export const Button = ({ className , text, type}: ButtonPage) => {
+  export const Button = ({ className , children, type, onClick }: ButtonPage) => {
     return (
-      <button className={className} type={type}>{text}</button>
+      <button className={className} onClick = {onClick} type={type}>{children}</button>
     )
   }
   

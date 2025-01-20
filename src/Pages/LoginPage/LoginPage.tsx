@@ -23,28 +23,30 @@ interface ILoginForm {
 export const LoginPage = () => {
     const { control, handleSubmit, formState: { errors }, reset} = useForm({ resolver: yupResolver(loginFormschema), defaultValues: { useremail: "", userpassword: "" }, })
     const navigate = useNavigate();
-    const [loginUser, {data: userData, isError, isLoading, isSuccess, error}] = useLoginUserMutation()
+    const [loginUser, {data: userData, isError}] = useLoginUserMutation()
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false); 
   const [modalMessage, setModalMessage] = useState("");
 
+  useEffect(()=>{
+    const userId = localStorage.getItem("user")
+    if (userId) {
+      navigate("/main")
+    }
+  })
   useEffect(() => {
-    console.log("isModalVisible:", isModalVisible); // Отладка
     if (userData?.status === 0) {
       setModalMessage("Неверный логин или пароль. Попробуйте снова.");
       setIsModalVisible(true);
     } else if (userData?.status === 1) {
       setModalMessage("Вы успешно вошли в систему!");
+      localStorage.setItem("user", JSON.stringify(userData.user_id));
       setIsModalVisible(true);
       setTimeout(() => navigate("/main"), 2000); // Перенаправление через 2 секунды
     }
   }, [userData, isError, navigate, isModalVisible]);
   
-
-    console.log(userData, isError, isLoading, isSuccess, error)
-
     const onSubmit: SubmitHandler<ILoginForm> = (data) => {
-        console.log(data)
         loginUser({email: data.useremail , password: data.userpassword})
     }
     const togglePasswordVisibility = () => {
@@ -55,8 +57,6 @@ export const LoginPage = () => {
         setIsModalVisible(false);
         reset();
       };
-      console.log("isError", isError)
-
     return (
         <div className="loginPage">
              <Heading text="Авторизация" level={1} className={""} />
@@ -75,7 +75,7 @@ export const LoginPage = () => {
         )} />
         
 
-                <Button text="Войти" type="submit" className={""}/>
+                <Button type="submit" className={""} children= {"Войти"}/>
                 </form>
             <AuthWith />
             <Modal

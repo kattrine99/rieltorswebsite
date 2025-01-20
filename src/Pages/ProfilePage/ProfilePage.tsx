@@ -1,5 +1,9 @@
+import { Header } from "../../components"
+
 export const ProfilePage = () => {
     return (
-        <div>ProfilePage</div>
+        <div>
+        <Header/>
+        ProfilePage</div>
     )
 }

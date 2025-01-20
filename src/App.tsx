@@ -1,9 +1,37 @@
 import "./App.css"
-import { MainPage } from "./Pages/index"
 import { Client } from 'appwrite';
+import { FavouritePage, LoginPage, MainPage, ProfilePage, RegistrationPage } from "./Pages/index";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const client = new Client();
 client.setProject('6789260e00308ca2f9b4');
+
+const routerConfig = createBrowserRouter([
+  {
+    path: "/",
+    element:  <MainPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/main",
+    element: <MainPage />,
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
+  },
+  {
+    path: "/register",
+    element: <RegistrationPage />
+  },
+  {
+    path: "/favorite",
+    element: <FavouritePage />
+  }
+]);
 
 function App() {
   return (
@@ -11,7 +39,7 @@ function App() {
       <>
         <div className="App">
           <div className="container">
-            <MainPage />
+          <RouterProvider router={routerConfig} />
           </div>
         </div>
       </>

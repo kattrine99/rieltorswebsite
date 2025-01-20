@@ -76,7 +76,6 @@ export const RegistrationPage = () => {
 
       const response = await registrationUser(payload).unwrap();
       if (response) {
-        // Сохраняем данные пользователя в localStorage
         localStorage.setItem("user", JSON.stringify(response));
         setIsModalOpen(true);
       }
@@ -180,7 +179,7 @@ export const RegistrationPage = () => {
             />
           )}
         />
-        <Button className="" text="Зарегистрироваться" type="submit" />
+        <Button className="" children="Зарегистрироваться" type="submit" />
       </form>
       <Modal
         isOpen={isModalOpen}
