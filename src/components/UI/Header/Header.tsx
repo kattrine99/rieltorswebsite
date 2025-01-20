@@ -25,16 +25,17 @@ export const Header = () => {
   }
   return (
     <header className="header">
-      <Link to= "/main"><img className="LogoImg" src="/images/logo.png" alt="Logo" /></Link>
+      <Link to="/main"><img className="LogoImg" src="/images/logo.png" alt="Logo" /></Link>
       <nav>
-        <span className="authBtn" onClick={goToFavorites}><FontAwesomeIcon icon={faHeart} /></span>
-       {UserId ? (<><div className="profile-wrapper">
+        <span className="FavBtn" onClick={goToFavorites}><FontAwesomeIcon icon={faHeart} /></span>
+        {UserId ? (<><div className="profile-wrapper">
           <img onClick={goToProfile}
+          id="profileImg"
             className="_no-select"
             src="\images\icons\user.png"
             alt="Profile" />
-        </div><button className="authBtn" onClick={LogOut}>Log Out</button></>) : ( <div><button className="authBtn" onClick={goToLogIn}>Sign in</button><button className="authBtn" onClick={goToSignUp}>Sign up</button></div>)}
-        
+        </div><button className="authBtn" onClick={LogOut}>Log Out</button></>) : (<div className="Btn"><button className="authBtn" onClick={goToLogIn}>Sign in</button><span>|</span><button className="authBtn" onClick={goToSignUp}>Sign up</button></div>)}
+
       </nav>
     </header>
   )

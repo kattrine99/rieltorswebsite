@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {Header} from "../../components/";
+import { Header } from "../../components/";
 import { Button } from "../../components/";
 import { Heading } from "../../components/";
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
@@ -19,7 +19,7 @@ interface Property {
 export const MainPage: React.FC = () => {
   const [properties, setProperties] = useState<Property[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [favorites, setFavorites] = useState<number[]>([]); 
+  const [favorites, setFavorites] = useState<number[]>([]);
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -63,6 +63,9 @@ export const MainPage: React.FC = () => {
   return (
     <>
       <Header />
+      <div className="Main">
+        <Heading text={"The #1 site real estate professionals trust"} level={1} className={""} />
+      </div>
       <div className="App">
         <Heading text="Объекты недвижимости" level={2} className={""} />
         {error && <p>{error}</p>}
@@ -81,13 +84,12 @@ export const MainPage: React.FC = () => {
                     alt={property.title}
                   />
                   <Button
-                    className={`favorite-btn ${
-                      favorites.includes(property.id) ? "active" : ""
-                    }`}
+                    className={`favorite-btn ${favorites.includes(property.id) ? "active" : ""
+                      }`}
                     onClick={() => toggleFavorite(property.id)}
                   > <FontAwesomeIcon icon={faHeart} /></Button>
-                    
-                
+
+
                 </div>
                 <div className="property-info">
                   <h3>{property.title}</h3>

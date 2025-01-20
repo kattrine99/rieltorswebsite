@@ -1,51 +1,94 @@
-html, body {
-    margin: 0;
+html,
+body {
+  margin: 0;
 }
-.header{
-    width: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #496aee;
-}
-nav{
-    display: flex;
-    gap: 20px;   
-}
-.favorites {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: #ffffff;
-    transition: color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .favorites:hover {
-    color: #e63946; 
-    transform: scale(1.1); 
-  }
-  .favorites:active {
-    color: #e63946;; 
-    transform: scale(1.5); 
-  }
-  .LogoImg{
-    margin: 0 50px;
-    width: 40px;
-    height: 50px;
 
-    &:hover {
-      transform: scale(110%);
-      box-shadow: 0 0 10px #7e9cca;
-    }
-    &:active{
-      transform: scale(98%);
-    }
+.header {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #496aee;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.favorites {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #ffffff;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.favorites:hover {
+  color: #e63946;
+  transform: scale(1.1);
+}
+
+.favorites:active {
+  color: #e63946;
+  ;
+  transform: scale(1.5);
+}
+
+.LogoImg {
+  margin: 0 50px;
+  width: 40px;
+  height: 50px;
+
+  &:hover {
+    transform: scale(110%);
+    box-shadow: 0 0 10px #7e9cca;
   }
-  .authBtn{
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
+
+  &:active {
+    transform: scale(98%);
   }
+}
+
+.Btn {
+  margin: 0 20px;
+  color: #ffffff;
+}
+
+.FavBtn {
+  font-size: 28px;
+  color: #ffffff;
+
+  &:hover {
+    transform: scale(110%);
+  }
+
+  &:active {
+    transform: scale(98%);
+    color: #ff006f;
+  }
+}
+
+.authBtn {
+  background: none;
+  border: none;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 10px;
+
+  &:hover {
+    transform: scale(105%);
+    border-bottom: 1px solid #ffffff;
+    text-shadow: 0 0 10px #1e00ff;
+  }
+
+  &:active {
+    transform: scale(90%), 0.3s ease;
+    color: #1900ff;
+  }
+}
