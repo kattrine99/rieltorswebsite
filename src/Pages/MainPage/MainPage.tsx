@@ -62,7 +62,7 @@ export const MainPage: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header/>
       <div className="Main">
         <Heading text={"The #1 site real estate professionals trust"} level={1} className={""} />
       </div>
