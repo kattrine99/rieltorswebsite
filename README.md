@@ -24,17 +24,12 @@
    git clone https://github.com/kattrine99/rieltorswebsite.git
    ```
 
-2. Перейдите в директорию проекта:
-   ```bash
-   cd rieltorswebsite
-   ```
-
-3. Установите зависимости:
+2. Установите зависимости:
    ```bash
    npm install
    ```
 
-4. Запустите проект:
+3. Запустите проект:
    ```bash
    npm run dev
    ```
