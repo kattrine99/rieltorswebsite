@@ -1,0 +1,89 @@
+.ProfileTitle {
+    text-align: center;
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 600;
+    font-size: 46px;
+    margin-bottom: 20px;
+}
+.ProfilePage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+    font-family: 'Comfortaa', sans-serif;
+}
+
+.ProfileCard {
+    display: flex;
+    width: 80%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.ProfileLeft {
+    width: 60%;
+    background: linear-gradient(315deg, #3448f9, #858be0 , #6670ef) ;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ProfileLeft img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    margin-bottom: 15px;
+
+    &:hover{
+        transform: scale(105%);
+    }
+    &:active{
+        transform: scale(98%);
+    }
+}
+
+.ProfileLeft h2 {
+    margin: 10px 0 5px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.ProfileLeft p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.ProfileRight {
+    width: 60%;
+    padding: 20px;
+}
+
+.ProfileRight h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.ProfileRight p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.ProfileRight .infoRow {
+    margin-bottom: 10px;
+}
+
+.ProfileRight .infoRow span {
+    font-weight: bold;
+    color: #333;
+}

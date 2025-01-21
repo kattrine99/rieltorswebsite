@@ -52,7 +52,19 @@ nav {
     transform: scale(98%);
   }
 }
+.profileImgHeader{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
 
+   &:hover{
+    transform: scale(105%);
+   }
+   &:active{
+    transform: scale(98%);
+   }
+}
 .Btn {
   margin: 0 20px;
   color: #ffffff;

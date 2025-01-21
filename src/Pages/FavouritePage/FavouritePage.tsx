@@ -1,5 +1,7 @@
+import { Header } from "../../components"
+
 export const FavouritePage = () => {
     return (
-        <div>FavouritePage</div>
+        <><Header /><div>FavouritePage</div></>
     )
 }

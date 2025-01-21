@@ -3,9 +3,10 @@ export interface GetUserByIdResponse {
     "message": {
         "mail": string,
         "phone_number": string,
-        "user-id": number,
+        "user_id": number,
         "name": string,
         "reg_date": Date,
+        "city": string
     }
 }
 export interface LoginUserPayload {
