@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+# Rieltors Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание
 
-Currently, two official plugins are available:
+Этот репозиторий содержит дипломный проект, созданный с использованием библиотеки **React**. Проект представляет собой веб-приложение для агентства недвижимости, которое предоставляет функционал для поиска, отображения и управления объектами недвижимости.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Основные особенности
+- **Современный интерфейс**: интуитивно понятный и эстетически приятный дизайн.
+- **Динамическая загрузка данных**: взаимодействие с базой данных для получения актуальной информации об объектах.
+- **Реактивность**: плавная и быстрая работа за счёт React.
+- **Масштабируемость**: легко адаптируется под новые функции и изменения.
 
-## Expanding the ESLint configuration
+## Технологии
+- **React**: библиотека для создания пользовательских интерфейсов.
+- **JavaScript (ES6+)**: основной язык разработки.
+- **CSS/SCSS**: стилизация компонентов.
+- **React Router**: маршрутизация между страницами.
+- **REST API**: взаимодействие с сервером.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Установка и запуск
 
-- Configure the top-level `parserOptions` property like this:
+1. Склонируйте репозиторий:
+   ```bash
+   git clone https://github.com/kattrine99/rieltorswebsite.git
+   ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. Установите зависимости:
+   ```bash
+   npm install
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. Запустите проект:
+   ```bash
+   npm run dev
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Приложение будет доступно по адресу: [http://localhost:3000](http://localhost:3000)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Структура проекта
+
+- **src**: основной каталог с исходным кодом.
+  - **components**: переиспользуемые компоненты.
+  - **pages**: страницы приложения.
+  - **styles**: глобальные и модульные стили.
+  - **services**: утилиты для работы с API.
+
+## Цели проекта
+Данный проект разработан в рамках дипломной работы и нацелен на демонстрацию знаний и навыков в:
+- Разработке SPA-приложений.
+- Работа с React и сопутствующими библиотеками.
+- Интеграции клиентской и серверной частей приложения.
+
+## Контакты
+Если у вас есть вопросы или предложения, свяжитесь со мной через [GitHub](https://github.com/kattrine99).
+
+---
+
+Спасибо за интерес к моему проекту!
