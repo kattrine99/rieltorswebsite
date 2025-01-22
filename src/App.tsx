@@ -1,6 +1,6 @@
 import "./App.css"
 import { Client } from 'appwrite';
-import { FavouritePage, LoginPage, MainPage, ProfilePage, RegistrationPage } from "./Pages/index";
+import { CardPage, FavoritePage, LoginPage, MainPage, ProfilePage, RegistrationPage } from "./Pages/index";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const client = new Client();
@@ -29,7 +29,11 @@ const routerConfig = createBrowserRouter([
   },
   {
     path: "/favorite",
-    element: <FavouritePage />
+    element: <FavoritePage />
+  },
+  {
+    path: "/card",
+    element: <CardPage/>
   }
 ]);
 

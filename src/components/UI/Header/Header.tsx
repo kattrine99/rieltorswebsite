@@ -5,21 +5,20 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 interface HeaderProps {
-  profilePicture?: string; // Указываем, что это необязательное свойство
+  profilePicture?: string; 
 }
 
 export const Header: React.FC<HeaderProps> = ({ profilePicture }) => {
   const navigate = useNavigate();
   const UserId = localStorage.getItem("user");
   const [currentProfilePicture, setCurrentProfilePicture] = useState<string>(
-    profilePicture || "/images/icons/user.png" // Начальное значение
+    profilePicture || "/images/icons/user.png" 
   );
 
-  // Обновляем локальное состояние фото профиля из localStorage
   useEffect(() => {
     const storedPicture = localStorage.getItem("profilePicture");
     setCurrentProfilePicture(storedPicture || "/images/icons/user.png");
-  }, [profilePicture]); // Если проп обновится, синхронизируем состояние
+  }, [profilePicture]); 
 
   const goToFavorites = () => {
     navigate("/favorite");
@@ -35,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({ profilePicture }) => {
   };
   const LogOut = () => {
     localStorage.removeItem("user");
-    localStorage.removeItem("profilePicture"); // Удаляем фото профиля при логауте
+    localStorage.removeItem("profilePicture"); 
     navigate("/login");
   };
 
@@ -55,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({ profilePicture }) => {
                 onClick={goToProfile}
                 id="profileImg"
                 className="profileImgHeader"
-                src={currentProfilePicture} // Используем актуальное фото профиля
+                src={currentProfilePicture} 
                 alt="Profile"
               />
             </div>
