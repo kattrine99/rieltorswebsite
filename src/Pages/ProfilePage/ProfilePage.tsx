@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Header, Heading } from "../../components";
+import { Header, Heading, Input } from "../../components";
 import { useGetUserByIdQuery } from "../../Store/api/auth.api";
 import "./ProfilePage.scss"
+
 export const ProfilePage = () => {
   const [userId, setUserId] = useState<number | null>(null);
 
@@ -58,17 +59,16 @@ export const ProfilePage = () => {
               alt="Profile"
             />
           </label>
-          <input
-            type="file"
+          <Input type="file"
             id="profile-picture"
             style={{ display: "none" }}
             accept="image/*"
-            onChange={handleProfilePictureChange}
-          />
-            <h2>{user?.name || "User Name"}</h2>
+            onChange={handleProfilePictureChange} errorMessage={undefined} isError={false}/>
+
+            <Heading text={user?.name || "User Name"} level={2} className={""}/>
         </div>
         <div className="ProfileRight">
-            <h3>Information</h3>
+        <Heading text={"Information"} level={3} className={""}/>
             <div className="infoRow">
                 <span>Email:</span>
                 <p>{user?.mail || "Not provided"}</p>

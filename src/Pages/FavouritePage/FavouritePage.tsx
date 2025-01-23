@@ -5,6 +5,7 @@ import { Button } from "../../components/";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./FavoritePage.scss";
+import { useNavigate } from "react-router";
 
 interface Property {
   id: number;
@@ -18,7 +19,10 @@ interface Property {
 
 export const FavoritePage: React.FC = () => {
   const [favoriteProperties, setFavoriteProperties] = useState<Property[]>([]);
-
+  const navigate = useNavigate()
+  const goToCards = () =>{
+    navigate("/card")
+  }
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favoriteProperties") || "[]");
     setFavoriteProperties(storedFavorites);
@@ -50,12 +54,15 @@ export const FavoritePage: React.FC = () => {
                   Комнаты: {property.rooms} | Площадь: {property.area} м²
                 </p>
                 <p>Адрес: {property.location.name}</p>
+              <div className="Buttons">
                 <Button
                   className="remove-btn"
                   onClick={() => removeFavorite(property.id)}
                 >
                   Удалить <FontAwesomeIcon icon={faTrash} />
                 </Button>
+                <Button className={"FavoriteMoreBtn"} onClick={goToCards}>Подробнее</Button>
+                </div>
               </div>
             </div>
           ))

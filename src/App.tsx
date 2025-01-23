@@ -9,7 +9,7 @@ client.setProject('6789260e00308ca2f9b4');
 const routerConfig = createBrowserRouter([
   {
     path: "/",
-    element:  <MainPage />,
+    element:  <LoginPage />,
   },
   {
     path: "/login",
@@ -32,7 +32,7 @@ const routerConfig = createBrowserRouter([
     element: <FavoritePage />
   },
   {
-    path: "/card",
+    path: "/card/:id",
     element: <CardPage/>
   }
 ]);

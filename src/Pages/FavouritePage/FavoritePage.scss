@@ -25,7 +25,9 @@
     border-radius: 8px;
     padding: 16px;
     width: 300px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
@@ -40,8 +42,12 @@
     margin-top: 12px;
   }
   
+  .Buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   .remove-btn {
-    margin-top: 10px;
     background-color: #ff4d4d;
     color: white;
     border: none;
@@ -49,8 +55,21 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
   .remove-btn:hover {
     background-color: #ff3333;
   }
-  
+  .FavoriteMoreBtn{
+  padding: 10px;
+  background-color: #5350f4;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+   &:hover{
+    box-shadow: 0 2px 5px #333;
+   }
+   &:active{
+    background: #3a3a3a;
+    color: #fff;
+    transform: scale(95%);
+   }
+  }
