@@ -7,40 +7,30 @@ export const ProfilePage = () => {
   const [userId, setUserId] = useState<number | null>(null);
   const [profilePicture, setProfilePicture] = useState<string | undefined>(undefined);
 
-  // Загружаем userId из localStorage
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    console.log("Stored User:", storedUser); // Лог для отладки
-
+    const storedUser = localStorage.getItem("user");  
     if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser); // Парсим JSON-строку
-        if (parsedUser && parsedUser.user_id && !isNaN(Number(parsedUser.user_id))) {
-          setUserId(Number(parsedUser.user_id)); // Извлекаем user_id
-        } else {
-          console.error("Invalid user data in localStorage:", parsedUser);
-          setUserId(null); // Устанавливаем null, если данные некорректны
+        if (!storedUser.startsWith("{")) {
+          const userId = Number(storedUser);
+          if (!isNaN(userId)) {
+            setUserId(userId);
+            return;
+          } 
         }
-      } catch (e) {
-        console.error("Failed to parse user data from localStorage:", e);
-        setUserId(null); // Обрабатываем ошибку, если JSON некорректен
-      }
-    } else {
-      console.error("No user data in localStorage");
-      setUserId(null);
-    }
+        const parsedUser = JSON.parse(storedUser);
+        if (parsedUser?.user_id && !isNaN(Number(parsedUser.user_id))) {
+          setUserId(Number(parsedUser.user_id));
+        } 
+      } 
   }, []);
+  
 
-
-  // Используем запрос только если userId валиден
   const { data: responseData, isLoading, error } = useGetUserByIdQuery(userId as number, {
     skip: userId === null || isNaN(userId),
   });
 
-  // Загружаем изображение профиля из localStorage
   useEffect(() => {
     const savedProfilePicture = localStorage.getItem("profilePicture");
-    console.log("Saved Profile Picture:", savedProfilePicture); // Лог для отладки
     if (savedProfilePicture) {
       setProfilePicture(savedProfilePicture);
     }

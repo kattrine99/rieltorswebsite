@@ -57,8 +57,15 @@ export const CardPage: React.FC = () => {
         <Heading text={property.title} level={1} className={""}/>
         <p>Цена: {property.price} AED</p>
         <p>Комнаты: {property.rooms}</p>
-        <p>Площадь: {property.area} м²</p>
-        <p>Адрес: {property.location?.name || "Не указано"}</p>
+        <p>Площадь: {Math.round(property.area)} м²</p>
+        <p>Адрес: {property.location && property.location.length > 0
+              ? property.location.map((loc, index) => (
+                  <span key={index}>
+                    {loc.name || "Не указано"}
+                    {index < property.location.length - 1 ? ", " : ""}
+                  </span>
+                ))
+              : "Не указано"}</p>
         <p className="contacts"><span>Мобильный: {property.phoneNumber.mobile}</span> <span>Whatsapp: {property.phoneNumber.whatsapp}</span></p>
         <button className="back-button" onClick={() => navigate("/main")}>
             <FontAwesomeIcon icon={faArrowLeft} />

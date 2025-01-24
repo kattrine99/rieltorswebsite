@@ -1,0 +1,40 @@
+/* Основной стиль футера */
+.footer {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #496aee;/* Светлый фон */
+    border-top: 1px solid #ddd; /* Линия разделения */
+  }
+  
+  /* Контейнер для содержимого */
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Ограничение ширины */
+  }
+  
+  /* Логотип */
+  .footer-logo .logo-img {
+    height: 50px; /* Размер логотипа */
+    object-fit: contain;
+  }
+  
+  /* Социальные иконки */
+  .footer-social {
+    display: flex;
+    gap: 40px; /* Расстояние между иконками */
+  }
+  
+  
+  /* Размер иконок */
+  .social-icon {
+    font-size: 24px;
+    margin: 0 10px ;
+  }
+
+  

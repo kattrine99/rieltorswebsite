@@ -6,23 +6,14 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./FavoritePage.scss";
 import { useNavigate } from "react-router";
-
-interface Property {
-  id: number;
-  title: string;
-  price: number;
-  rooms: number;
-  area: number;
-  location: { name: string };
-  coverPhoto?: { url: string };
-}
+import { Property } from "../MainPage/Interfaces";
 
 export const FavoritePage: React.FC = () => {
   const [favoriteProperties, setFavoriteProperties] = useState<Property[]>([]);
   const navigate = useNavigate()
-  const goToCards = () =>{
-    navigate("/card")
-  }
+  const goToCards = (property: Property) => {
+    navigate(`/card/${property.id}`, { state: { property } });
+  };
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favoriteProperties") || "[]");
     setFavoriteProperties(storedFavorites);
@@ -51,9 +42,16 @@ export const FavoritePage: React.FC = () => {
                 <h3>{property.title}</h3>
                 <p>Цена: {property.price} AED</p>
                 <p>
-                  Комнаты: {property.rooms} | Площадь: {property.area} м²
+                  Комнаты: {property.rooms} | Площадь: {Math.round(property.area)} м²
                 </p>
-                <p>Адрес: {property.location.name}</p>
+                <p>Адрес: {property.location && property.location.length > 0
+              ? property.location.map((loc, index) => (
+                  <span key={index}>
+                    {loc.name || "Не указано"}
+                    {index < property.location.length - 1 ? ", " : ""}
+                  </span>
+                ))
+              : "Не указано"}</p>
               <div className="Buttons">
                 <Button
                   className="remove-btn"
@@ -61,7 +59,7 @@ export const FavoritePage: React.FC = () => {
                 >
                   Удалить <FontAwesomeIcon icon={faTrash} />
                 </Button>
-                <Button className={"FavoriteMoreBtn"} onClick={goToCards}>Подробнее</Button>
+                <Button className={"FavoriteMoreBtn"} onClick={()=>goToCards(property)}>Подробнее</Button>
                 </div>
               </div>
             </div>

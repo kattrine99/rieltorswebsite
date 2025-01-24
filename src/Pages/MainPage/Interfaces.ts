@@ -8,7 +8,7 @@ export interface Property {
   rooms: number;
   area: number;
   phoneNumber: {mobile: string , phone: string , whatsapp: string}
-  location: { name?: string;};
+  location: { name?: string;}[];
   coverPhoto: { url: string };
 }
 

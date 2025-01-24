@@ -1,0 +1,54 @@
+/* Общий контейнер */
+.smallcards-wrapper {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9; /* Светлый фон */
+  }
+  
+  
+  /* Контейнер карточек */
+  .smallcards-container {
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+    flex-wrap: wrap;
+  }
+  
+  .smallcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 150px;
+  }
+  
+  .icon-container {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+  }
+  .icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+  }
+.content-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .HowItWorkstext {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #333; 
+  }
+  .smallcard-text {
+    font-size: 14px;
+    color: #e4e1e1;
+    text-align: center;
+  }
+  
