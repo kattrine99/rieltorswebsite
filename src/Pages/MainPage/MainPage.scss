@@ -11,20 +11,24 @@
   font-family: 'Comfortaa', sans-serif;
 
 }
+
 .Main h1 {
   color: white;
   font-size: 5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   margin: 0;
 }
-.HeadingMainmini{
+
+.HeadingMainmini {
   border: 1px solid #3a3a3a;
   padding: 10px;
   border-radius: 30px;
 }
-.Main p{
+
+.Main p {
   text-transform: uppercase;
 }
+
 .App h2 {
   text-align: center;
   font-size: 46px;
@@ -94,7 +98,8 @@
 .property-info {
   padding: 15px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+
   h3 {
     font-size: 18px;
     font-weight: bold;
@@ -110,25 +115,30 @@
     font-family: 'Comfortaa', sans-serif;
   }
 }
-.LinkToCard{
+
+.LinkToCard {
   text-decoration: none;
 }
-.MoreBtn{
+
+.MoreBtn {
   margin-top: 30px;
   padding: 10px;
   background-color: #5350f4;
   border: none;
   border-radius: 5px;
   color: #fff;
-   &:hover{
+
+  &:hover {
     box-shadow: 0 2px 5px #333;
-   }
-   &:active{
+  }
+
+  &:active {
     background: #3a3a3a;
     color: #fff;
     transform: scale(95%);
-   }
+  }
 }
+
 .loadMoreBtn,
 .collapseBtn {
   display: flex;
@@ -139,38 +149,40 @@
   width: 100%;
   font-size: 16px;
   font-weight: bold;
-  color: #fff;
-  background-color: #a4a4a4;
+  color: #636363;
+  background-color: #fff;
   border: none;
-  border-radius: 8px 8px 0 0;
+  border-radius: 0 0 8px 8px;
+  transform: translateY(10px);
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .loadMoreBtn:hover,
 .collapseBtn:hover {
-  background-color: #325982;
-  transform: translateY(-2px);
+  background-color: #5350F4;
+  color: #fff;
 }
 
 .loadMoreBtn:active,
 .collapseBtn:active {
-  background-color: #003f7f;
-  transform: translateY(1px);
+  background-color: #fff;
+  transform: translateY(1px) ease-in-out;
 }
 
 .loadMoreBtn .faArrowDown,
 .collapseBtn .faArrowUp {
   font-size: 20px;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 
-.loadMoreBtn span,
-.collapseBtn span {
-  margin-top: 5px; 
+  .loadMoreBtn span,
+  .collapseBtn span {
+    margin-top: 5px;
+  }
 }
-}
-.HowItWorksPage{
+
+.HowItWorksPage {
   color: #fff;
   background-color: #5350f4;
   background-position: center;
@@ -178,155 +190,157 @@
   justify-content: center;
   padding: 3%;
 }
-.HowItWorksPage h2{
+
+.HowItWorksPage h2 {
   color: #fff;
 }
-  .HowItWorkstext {
-    font-size: 16px;
-    color: #dcd7d7; 
-    margin-bottom: 40px;
+
+.HowItWorkstext {
+  font-size: 16px;
+  color: #dcd7d7;
+  margin-bottom: 40px;
+}
+
+.landing-page {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+
+  .image-section {
+    flex: 1;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
-  .landing-page {
+
+  .content-section {
+    flex: 1;
+    padding: 40px;
     display: flex;
-    flex-direction: row;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-  
-    .image-section {
-      flex: 1;
-      overflow: hidden;
-  
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f9f7f6;
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
     }
-  
-    .content-section {
-      flex: 1;
-      padding: 40px;
+
+    p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .features {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background-color: #f9f7f6;
-  
-      h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
-        color: #333;
-      }
-  
-      p {
-        font-size: 16px;
-        margin-bottom: 30px;
-        line-height: 1.5;
-        color: #555;
-      }
-  
-      .features {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap; // Позволяет переносить блоки на новую строку
-        margin-bottom: 20px;
-  
-        .feature {
-          flex: 1;
-  
-          h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #222;
-          }
-  
-          p {
-            font-size: 14px;
-            color: #555;
-          }
+      justify-content: space-between;
+      flex-wrap: wrap; // Позволяет переносить блоки на новую строку
+      margin-bottom: 20px;
+
+      .feature {
+        flex: 1;
+
+        h4 {
+          font-size: 18px;
+          margin-bottom: 10px;
+          color: #222;
         }
-  
-        .feature + .feature {
-          margin-left: 20px;
-  
-          @media (max-width: 768px) {
-            margin-left: 0; // Убираем отступ между колонками в узких экранах
-          }
+
+        p {
+          font-size: 14px;
+          color: #555;
+        }
+      }
+
+      .feature+.feature {
+        margin-left: 20px;
+
+        @media (max-width: 768px) {
+          margin-left: 0; // Убираем отступ между колонками в узких экранах
         }
       }
     }
-  
-    // Адаптивность
-    @media (max-width: 1024px) {
-      .content-section {
-        padding: 20px;
-      }
-  
-      h2 {
-        font-size: 24px;
-      }
-  
-      p {
-        font-size: 14px;
-      }
-  
-      .features .feature h4 {
-        font-size: 16px;
-      }
-  
-      .learn-more {
-        font-size: 14px;
-      }
+  }
+
+  // Адаптивность
+  @media (max-width: 1024px) {
+    .content-section {
+      padding: 20px;
     }
-  
-    @media (max-width: 768px) {
-      flex-direction: column; // Переключаемся в вертикальный режим
-  
-      .image-section {
-        height: 50vh; // Устанавливаем фиксированную высоту для изображения
-      }
-  
-      .content-section {
-        padding: 20px;
-        align-items: center; // Центрируем текст по горизонтали
+
+    h2 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    .features .feature h4 {
+      font-size: 16px;
+    }
+
+    .learn-more {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column; // Переключаемся в вертикальный режим
+
+    .image-section {
+      height: 50vh; // Устанавливаем фиксированную высоту для изображения
+    }
+
+    .content-section {
+      padding: 20px;
+      align-items: center; // Центрируем текст по горизонтали
+      text-align: center;
+    }
+
+    .features {
+      flex-direction: column; // Располагаем фичи друг под другом
+      align-items: center;
+
+      .feature {
+        margin-bottom: 15px;
         text-align: center;
       }
-  
-      .features {
-        flex-direction: column; // Располагаем фичи друг под другом
-        align-items: center;
-  
-        .feature {
-          margin-bottom: 15px;
-          text-align: center;
-        }
-      }
-  
-      .learn-more {
-        margin-top: 20px;
-      }
     }
-  
-    @media (max-width: 480px) {
-      .image-section {
-        height: 40vh; // Уменьшаем высоту изображения для маленьких экранов
-      }
-  
-      h2 {
-        font-size: 20px;
-      }
-  
-      p {
-        font-size: 13px;
-      }
-  
-      .features .feature h4 {
-        font-size: 14px;
-      }
-  
-      .learn-more {
-        font-size: 13px;
-        padding: 8px 16px;
-      }
+
+    .learn-more {
+      margin-top: 20px;
     }
   }
-  
+
+  @media (max-width: 480px) {
+    .image-section {
+      height: 40vh; // Уменьшаем высоту изображения для маленьких экранов
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+
+    .features .feature h4 {
+      font-size: 14px;
+    }
+
+    .learn-more {
+      font-size: 13px;
+      padding: 8px 16px;
+    }
+  }
+}
