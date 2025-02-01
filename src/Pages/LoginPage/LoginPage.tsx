@@ -1,5 +1,5 @@
 import "./LoginPage.scss";
-import { Button, Input, AuthWith, Heading } from "../../components"; // Убраны лишние точки
+import { Modal, Button, Input, AuthWith, Heading } from "../../components"; // Убраны лишние точки
 import * as yup from "yup";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,7 +7,6 @@ import { useLoginUserMutation } from "../../Store/api/auth.api";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import Modal from "../../components/UI/Modal/Modal";
 
 interface ILoginForm {
   useremail: string;
@@ -59,7 +58,7 @@ export const LoginPage = () => {
       setModalType("success");
       localStorage.setItem("user", JSON.stringify(userData.user_id));
       setIsModalVisible(true);
-      setTimeout(() => navigate("/main"), 2000)
+      setTimeout(() => navigate("/main"), 1000)
     }
   }, [userData, isError, navigate]);
 

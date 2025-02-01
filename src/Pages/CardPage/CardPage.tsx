@@ -1,93 +1,45 @@
-import { Header, Heading } from "../../components";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Button, Header, Heading } from "../../components";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Property } from "../MainPage/Interfaces";
-import axios from "axios";
-import { BASE_URL, RAPIDAPI_HOST, RAPIDAPI_KEY } from "../../utils/cardsBaseUrl";
+import { Location, Property } from "../MainPage/Interfaces";
+import { useGetAllHouseQuery } from "../../Store/api/house.api";
 import "./CardPage.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-const PEXELS_API_KEY = "vs5WsAgHWmL5kQ2h0XVlWM0rgSurjS2z2e1uQEl5SWXOhJMEbVtBz4DY";
+import { useGetPexelsImagesQuery } from "../../Store/api/getPexelsImg.api";
 
 interface PexelsPhoto {
-  src: {
-    large: string;
-  };
+  src: { large: string };
 }
-
-interface PexelsApiResponse {
-  photos: PexelsPhoto[];
-}
-
 export const CardPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const location = useLocation();
   const navigate = useNavigate();
-  const [property, setProperty] = useState<Property | null>(
-    location.state?.property || null
-  );
-  const [error, setError] = useState<string | null>(null);
   const [images, setImages] = useState<string[]>([]);
 
-  useEffect(() => {
-    if (!property) {
-      const fetchPropertyDetails = async () => {
-        try {
-          const response = await axios.get(`${BASE_URL}/${id}`, {
-            headers: {
-              "x-rapidapi-key": RAPIDAPI_KEY,
-              "x-rapidapi-host": RAPIDAPI_HOST,
-            },
-          });
+  const { data: houses, isLoading: isLoadingHouses } = useGetAllHouseQuery({});
+  const house = houses?.hits.find((house: Property) => house.id === Number(id));
 
-          if (!response.data) {
-            throw new Error("Данные не найдены.");
-          }
+  const { data: pexelsData, isLoading: isLoadingPexels } = useGetPexelsImagesQuery("modern apartment interior");
 
-          setProperty(response.data);
-        } catch (error) {
-          console.error("Ошибка загрузки:", error);
-          setError("Не удалось загрузить данные карточки.");
-        }
-      };
-
-      fetchPropertyDetails();
-    }
-  }, [id, property]);
 
   useEffect(() => {
-    const fetchImagesFromPexels = async () => {
-      if (!property) return;
+    const pexelsImages = pexelsData?.photos.map((photo: PexelsPhoto) => photo.src.large) || [];
+    if (!house) return;
 
-      try {
-        const response = await axios.get<PexelsApiResponse>("https://api.pexels.com/v1/search", {
-          headers: {
-            Authorization: PEXELS_API_KEY,
-          },
-          params: {
-            query: "modern apartment interior", // Больше точности в запросе
-            per_page: 6, // Количество фото
-            orientation: "landscape", // Загружаем только горизонтальные фото
-          },
-        });
+    const firstImage =
+      house.coverPhoto?.url ||
+      (house.photos && house.photos.length > 0 ? house.photos[0].url : null) ||
+      pexelsImages[0] ||
+      "/default-placeholder.jpg";
 
-        const fetchedImages = response.data.photos.map((photo) => photo.src.large);
-        setImages([property.coverPhoto?.url || "", ...fetchedImages]);
-      } catch (error) {
-        console.error("Ошибка загрузки изображений с Pexels:", error);
-      }
-    };
+    setImages([firstImage, ...pexelsImages].filter(Boolean));
+  }, [house, pexelsData?.photos]);
 
-    fetchImagesFromPexels();
-  }, [property]);
-
-
-  if (error) return <p>{error}</p>;
-  if (!property) return <p>Загрузка...</p>;
+  if (isLoadingHouses || isLoadingPexels) return <p>Загрузка...</p>;
+  if (!house) return <p>Объект недвижимости не найден.</p>;
 
   const sliderSettings = {
     customPaging: function (i: number) {
@@ -119,28 +71,26 @@ export const CardPage: React.FC = () => {
           </Slider>
         </div>
         <div className="info-section">
-          <Heading text={property.title} level={1} className={""} />
-          <p>Цена: {property.price} AED</p>
-          <p>Комнаты: {property.rooms}</p>
-          <p>Площадь: {Math.round(property.area)} м²</p>
+          <Heading text={house.title} level={1} className={""} />
+          <p><strong>Цена:</strong> {house.price} AED</p>
+          <p><strong>Комнаты:</strong> {house.rooms}</p>
+          <p><strong>Площадь:</strong> {Math.round(house.area)} м²</p>
           <p>
-            Адрес:{" "}
-            {property.location && property.location.length > 0
-              ? property.location.map((loc, index) => (
+            <strong>Адрес:</strong>{" "}
+            {house.location?.length
+              ? house.location.map((location: Location, index: number) => (
                 <span key={index}>
-                  {loc.name || "Не указано"}
-                  {index < property.location.length - 1 ? ", " : ""}
+                  {location.name || "Не указано"}
+                  {index < house.location.length - 1 ? ", " : ""}
                 </span>
               ))
               : "Не указано"}
           </p>
           <p className="contacts">
-            <span>Мобильный: {property.phoneNumber.mobile}</span>{" "}
-            <span>Whatsapp: {property.phoneNumber.whatsapp}</span>
+            <span><strong>Мобильный:</strong> {house.phoneNumber?.mobile || "Нет данных"}</span>
+            <span><strong>Whatsapp:</strong> {house.phoneNumber?.whatsapp || "Нет данных"}</span>
           </p>
-          <button className="back-button" onClick={() => navigate("/main")}>
-            <FontAwesomeIcon icon={faArrowLeft} /> Назад
-          </button>
+          <Button className={"back-button"} onClick={() => navigate("/main")}><FontAwesomeIcon icon={faArrowLeft} /> Назад</Button>
         </div>
       </div>
     </>

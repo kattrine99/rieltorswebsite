@@ -1,19 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { AuthApi } from "./api/auth.api";
 import { houseApi } from "./api/house.api";
+import { pexelsApi } from "./api/getPexelsImg.api";
+
 
 export const store = configureStore({
   reducer: {
-    [AuthApi.reducerPath]: AuthApi.reducer, // Редуктор AuthApi
-    [houseApi.reducerPath]: houseApi.reducer, // Редуктор houseApi
+    [AuthApi.reducerPath]: AuthApi.reducer,
+    [houseApi.reducerPath]: houseApi.reducer,
+    [pexelsApi.reducerPath]: pexelsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat(houseApi.middleware) // Middleware houseApi
-      .concat(AuthApi.middleware), // Middleware AuthApi
+      .concat(houseApi.middleware)
+      .concat(AuthApi.middleware)
+      .concat(pexelsApi.middleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>; // Тип состояния
-export type AppDispatch = typeof store.dispatch; // Тип диспетчера
-
-export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch; 

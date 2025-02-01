@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
-
+export interface Location {
+  name: string;
+}
 export interface Property {
   hitIndex: ReactNode;
   id: number;
@@ -7,11 +9,8 @@ export interface Property {
   price: number;
   rooms: number;
   area: number;
-  phoneNumber: {mobile: string , phone: string , whatsapp: string}
-  location: { name?: string;}[];
-  coverPhoto: { url: string };
-}
-
-export interface ApiResponse {
   hits: Property[];
+  phoneNumber: { mobile: string, phone: string, whatsapp: string }
+  location: Location[];
+  coverPhoto: { url: string };
 }

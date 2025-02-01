@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./Header.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import "./Header.scss";
 
 interface HeaderProps {
   profilePicture?: string; 

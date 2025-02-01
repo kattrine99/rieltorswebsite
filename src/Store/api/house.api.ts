@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL, RAPIDAPI_KEY, RAPIDAPI_HOST } from '../../utils/cardsBaseUrl';
 
 export const houseApi = createApi({
-  reducerPath: 'houseApi', // Уникальный идентификатор для API
+  reducerPath: 'houseApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: (headers) => {
@@ -13,12 +13,22 @@ export const houseApi = createApi({
   }),
   endpoints: (builder) => ({
     getAllHouse: builder.query({
-      query: () => '/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=24',
+      query: ({ locationExternalIDs, purpose, hitsPerPage, page, lang }) => ({
+        url: 'properties/list',
+        params: {
+          locationExternalIDs: locationExternalIDs || "5002,6020",
+          purpose: purpose || "for-rent",
+          hitsPerPage: hitsPerPage || 24,
+          page: page || 0,
+          lang: lang || "en",
+        },
+        keepUnusedDataFor: 60, 
+        refetchOnMountOrArgChange: false,
+        refetchOnReconnect: true,
+      }),
     }),
-    getHouseDetails: builder.query({
-      query: (externalID: string) => `/properties/detail?externalID=${externalID}`,
-    }),
+
   }),
 });
 
-export const { useGetAllHouseQuery, useGetHouseDetailsQuery } = houseApi;
+export const { useGetAllHouseQuery } = houseApi;

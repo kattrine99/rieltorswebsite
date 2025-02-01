@@ -1,57 +1,31 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Header, Smallcards } from "../../components/";
-import { Button } from "../../components/";
-import { Heading } from "../../components/";
+import { Header, Smallcards, Button, Heading, Footer } from "../../components/";
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BASE_URL, RAPIDAPI_KEY, RAPIDAPI_HOST } from '../../utils/cardsBaseUrl';
-import { Property, ApiResponse } from "./Interfaces"
-import "./MainPage.scss";
+import { Property } from "./Interfaces";
 import { useNavigate } from "react-router";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { cardData } from "../../components/index"
-import { Footer } from "../../components/UI/Footer/Footer";
-
+import { cardData } from "../../components/index";
+import { useGetAllHouseQuery } from "../../Store/api/house.api";
+import "./MainPage.scss";
 
 export const MainPage: React.FC = () => {
-  const [properties, setProperties] = useState<Property[]>([]);
-  const [error] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<Property[]>(
     JSON.parse(localStorage.getItem("favoriteProperties") || "[]")
   );
   const [visibleCount, setVisibleCount] = useState<number>(5);
+  const { data, isLoading } = useGetAllHouseQuery({
+    locationExternalIDs: "5002,6020",
+    purpose: "for-rent",
+    hitsPerPage: 24,
+    page: 0,
+    lang: "en",
+  });
 
-
-  useEffect(() => {
-    const fetchProperties = async () => {
-      const response = await axios.get<ApiResponse>(
-        BASE_URL,
-        {
-          headers: {
-            "x-rapidapi-key": RAPIDAPI_KEY,
-            "x-rapidapi-host": RAPIDAPI_HOST,
-          },
-          params: {
-            locationExternalIDs: "5002,6020",
-            purpose: "for-rent",
-            hitsPerPage: 24,
-            page: 0,
-            lang: "en",
-          },
-        }
-      );
-
-      const extractedProperties = response.data.hits.map((hit, index) => ({
-        ...hit,
-        hitIndex: index,
-      }));
-
-      setProperties(extractedProperties);
-    };
-
-    fetchProperties();
-  }, []);
+  const extractedProperties = data?.hits.map((hit: Property, index: number) => ({
+    ...hit,
+    hitIndex: index,
+  })) || [];
 
   const toggleFavorite = (property: Property) => {
     const isFavorite = favorites.some((fav) => fav.id === property.id);
@@ -65,19 +39,20 @@ export const MainPage: React.FC = () => {
     localStorage.setItem("favoriteProperties", JSON.stringify(favorites));
   }, [favorites]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const goToCards = (property: Property) => {
     navigate(`/card/${property.id}`, { state: { property } });
   };
+
   const loadMore = () => {
-    if (visibleCount >= properties.length) {
+    if (visibleCount >= extractedProperties.length) {
       setVisibleCount(5);
     } else {
-      setVisibleCount((prev) => Math.min(prev + 5, properties.length));
+      setVisibleCount((prev) => Math.min(prev + 5, extractedProperties.length));
     }
   };
-
+  if (isLoading) return <p>Loading...</p>;
   return (
     <>
       <Header />
@@ -88,12 +63,11 @@ export const MainPage: React.FC = () => {
       </div>
       <div className="App">
         <Heading text="Объекты недвижимости" level={2} className={""} />
-        {error && <p>{error}</p>}
-        {properties.length === 0 ? (
+        {extractedProperties.length === 0 ? (
           <p>Данные загружаются или отсутствуют...</p>
         ) : (
           <div className="property-list">
-            {properties.slice(0, visibleCount).map((property) => {
+            {extractedProperties.slice(0, visibleCount).map((property: Property) => {
               const isFavorite = favorites.some((fav) => fav.id === property.id);
               return (
                 <div
@@ -102,7 +76,7 @@ export const MainPage: React.FC = () => {
                 >
                   <div className="property-image">
                     <img
-                      src={property.coverPhoto?.url || "https://via.placeholder.com/300"}
+                      src={property.coverPhoto?.url}
                       alt={property.title}
                     />
                     <Button
@@ -138,7 +112,7 @@ export const MainPage: React.FC = () => {
             })}
           </div>
         )}
-        {visibleCount >= properties.length ? (
+        {visibleCount >= extractedProperties.length ? (
           <Button onClick={() => setVisibleCount(5)} className="collapseBtn">
             <FontAwesomeIcon icon={faArrowUp} />
             Свернуть
@@ -157,10 +131,7 @@ export const MainPage: React.FC = () => {
       </div>
       <div className="landing-page">
         <div className="image-section">
-          <img
-            src="/images/work.png"
-            alt="Interior"
-          />
+          <img src="/images/work.png" alt="Interior" />
         </div>
         <div className="content-section">
           <Heading text={"Why You Should Work With Us"} level={2} className={""} />

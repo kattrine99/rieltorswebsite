@@ -1,25 +1,14 @@
-import { Button } from "../../components/";
-import { Input } from "../../components/";
-import "./RegistrationPage.scss";
-import { Heading } from "../../components/";
+import { Button, Input, Modal, Heading } from "../../components/";
 import * as yup from "yup";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../components//UI/Modal/Modal";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useRegistrationUserMutation } from "../../Store/api/auth.api"
 import { RegistrationUserPayload } from "../../Store/api/types";
-
-interface IRegisterForm {
-  user_city: string;
-  userfirstname: string;
-  userlastname: string;
-  useremail: string;
-  usertel?: string;
-  userpassword: string;
-}
+import { IRegisterForm } from "./Registration"
+import "./RegistrationPage.scss";
 
 const registerFormschema = yup.object({
   userfirstname: yup

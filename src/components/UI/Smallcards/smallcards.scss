@@ -1,19 +1,14 @@
-/* Общий контейнер */
 .smallcards-wrapper {
     text-align: center;
     padding: 40px 20px;
-    background-color: #f9f9f9; /* Светлый фон */
+    background-color: #f9f9f9; 
   }
-  
-  
-  /* Контейнер карточек */
   .smallcards-container {
     display: flex;
     justify-content: center;
     gap: 10%;
     flex-wrap: wrap;
   }
-  
   .smallcard {
     display: flex;
     flex-direction: column;
@@ -21,7 +16,6 @@
     padding: 20px;
     width: 150px;
   }
-  
   .icon-container {
     width: 50px;
     height: 50px;
